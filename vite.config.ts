@@ -11,11 +11,10 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
-        fetchPage: resolve(__dirname, `src/pages/fetch/index.html`),
-        messageMain: resolve(__dirname, `src/pages/third/main/index.html`),
-        messageIframe1: resolve(__dirname, `src/pages/third/frame1/index.html`),
-        messageIframe2: resolve(__dirname, `src/pages/third/frame2/index.html`),
-        first: resolve(__dirname, `src/pages/first/index.html`),
+        messageMain: resolve(__dirname, `src/pages/message/main/index.html`),
+        messageIframe1: resolve(__dirname, `src/pages/message/frame1/index.html`),
+        messageIframe2: resolve(__dirname, `src/pages/message/frame2/index.html`),
+        ui: resolve(__dirname, `src/pages/ui/index.html`),
       },
     },
   },
