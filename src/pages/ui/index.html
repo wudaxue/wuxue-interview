@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Document</title>
+<style>
+  * {
+    padding: 0;
+    margin: 0;
+  }
+  body {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+    background-color: #f4f4f4;
+    overflow-y: scroll;
+  }
+
+  /* 顶部导航栏 */
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 60px;
+    width: 100%;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 1000;
+  }
+
+  .logo {
+    width: 80px;
+    height: 40px;
+    background: #d9d9d9;
+    margin-right: 20px;
+  }
+
+  .nav-item {
+    position: relative;
+    margin-right: 20px;
+    cursor: pointer;
+    height: 60px;
+    line-height: 60px;
+  }
+
+  .nav-item a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s;
+  }
+
+  /* 悬停渐变 */
+  .nav-item:hover > a {
+    background: linear-gradient(to right, #2081FF, #D900FF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* 下拉菜单 */
+  .dropdown-menu {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    padding: 10px 0;
+    display: none;
+    flex-direction: column;
+    min-width: 180px;
+    z-index: 999;
+    z-index: 2;
+  }
+
+  /* 小箭头 */
+  .dropdown-menu::before {
+    content: '';
+    position: absolute;
+    top: -16px;
+    left: 50%;
+    border-width: 8px;
+    border-style: solid;
+    border-color: transparent transparent #fff transparent;
+    z-index: 1;
+  }
+  .dropdown-menu::after {
+  content: '';
+  position: absolute;
+  top: -17px;
+  left: 50%;
+  border-width: 8px;
+  border-style: solid;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  filter: blur(1px);
+  z-index: -1;
+}
+
+  .nav-item:is(:hover, :has(.dropdown-menu:hover)) .dropdown-menu {
+    display: flex;
+  }
+
+  /* 菜单项进入动画 */
+  .dropdown-item {
+    display: flex;
+    align-items: center;
+    padding: 4px 16px;
+    opacity: 0;
+    transform: translateX(-16px);
+    animation: fadeInItem 0.4s forwards;
+  }
+  .dropdown-item:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+  .dropdown-item:nth-child(2) {
+    animation-delay: 0.25s;
+  }
+  .dropdown-item:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+  .dropdown-item:nth-child(4) {
+    animation-delay: 0.55s;
+  }
+
+  @keyframes fadeInItem {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .dropdown-item:hover {
+    background: #f4f4f4;
+  }
+
+  .dropdown-item .icon {
+    width: 30px;
+    height: 30px;
+    background: #d9d9d9;
+    margin-right: 10px;
+  }
+
+  /* 左侧侧边栏 */
+  .sidebar {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 220px;
+    bottom: 0;
+    background: #fff;
+    box-shadow: 2px 0 6px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .sidebar-top {
+    background: #f4f4f4;
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .sidebar-scroll {
+    flex: 1;
+    overflow-y: scroll;
+    background: #f4f4f4;
+    padding: 20px;
+  }
+
+  .sidebar-scroll::-webkit-scrollbar {
+    width: 0;
+  }
+
+  .scroll-content {
+    height: 800px;
+  }
+
+  .sidebar-bottom {
+    background: #f4f4f4;
+    padding: 10px;
+    text-align: center;
+    border-top: 1px solid #ddd;
+  }
+
+  .content {
+    margin-left: 220px;
+    margin-top: 60px;
+    padding: 40px;
+    height: 1000px;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="logo"></div>
+    <div class="nav-item">
+      <a href="#">下拉菜单</a>
+      <div class="dropdown-menu">
+        <div class="dropdown-item"><div class="icon"></div>菜单项一</div>
+        <div class="dropdown-item"><div class="icon"></div>菜单项二</div>
+        <div class="dropdown-item"><div class="icon"></div>菜单项三</div>
+        <div class="dropdown-item"><div class="icon"></div>菜单项四</div>
+      </div>
+    </div>
+    <div class="nav-item">
+      <a href="#" style="color:#D900FF;">下拉菜单鼠标悬停效果</a>
+      <div class="dropdown-menu">
+        <div class="dropdown-item"><div class="icon"></div>菜单项一</div>
+        <div class="dropdown-item"><div class="icon"></div>菜单项二</div>
+        <div class="dropdown-item"><div class="icon"></div>菜单项三</div>
+        <div class="dropdown-item"><div class="icon"></div>菜单项四</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar">
+    <div class="sidebar-top">顶部固定区</div>
+    <div class="sidebar-scroll">
+      <div class="scroll-content">滚动菜单区</div>
+    </div>
+    <div class="sidebar-bottom">设置及登出固定区</div>
+  </div>
+
+  <div class="content">
+    内容区（滚动容器必须为 body，不能自定义滚动容器）
+  </div>
+</body>
+</html>
